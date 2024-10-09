@@ -1,3 +1,22 @@
+<?php
+require_once __DIR__ . "/models/genre.php";
+require_once __DIR__ . "/models/movie.php";
+
+$fantasy = new Genre("Fantasy");
+$horror = new Genre("Horror");
+$comedy = new Genre("Comedy");
+
+// Istanziazione di due oggetti Movie
+$film1 = new Movie("Inception", "Christopher Nolan", 2010, $fantasy);
+$film1->setValutazione(9);
+
+$film2 = new Movie("La La Land", "Damien Chazelle", 2016, $comedy);
+$film2->setValutazione(8);
+
+// $movies = [$film1, $film2];
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,61 +27,20 @@
 </head>
 
 <body>
+    <h1><?= $film1->titolo; ?> </h1>
+    <h2> di <?= $film1->regista ?> del <?= $film1->anno ?></h2>
+    <h2>Con un voto di <?= $film1->valutazione ?>/10</h2>
+
+    <h1><?= $film2->titolo; ?> </h1>
+    <h2> di <?= $film2->regista ?> del <?= $film2->anno ?></h2>
+    <h2>Con un voto di <?= $film2->valutazione ?>/10</h2>
+    <h2>Genere <?= $film2->genere->name ?></h2>
+
     <?php
-    class Movie
-    {
-        //? Variabili d'istanza
-        public $titolo;
-        public $regista;
-        public $anno;
-        public $valutazione;
-
-        //! Costruttore
-        public function __construct($titolo, $regista, $anno)
-        {
-            $this->titolo = $titolo;
-            $this->regista = $regista;
-            $this->anno = $anno;
-            $this->valutazione = 0;
-        }
-
-        // Metodo per impostare la valutazione
-        public function setValutazione($voto)
-        {
-            if ($voto >= 0 && $voto <= 10) {
-                $this->valutazione = $voto;
-            } else {
-                echo "La valutazione deve essere compresa tra 0 e 10.";
-            }
-        }
-
-        //! Metodo per ottenere la valutazione
-        public function getValutazione()
-        {
-            return $this->valutazione;
-        }
-
-        // Metodo per stampare le informazioni del film
-        public function stampaInfo()
-        {
-            echo "<h2>{$this->titolo}</h2>";
-            echo "<p>Regista: {$this->regista}</p>";
-            echo "<p>Anno: {$this->anno}</p>";
-            echo "<p>Valutazione: {$this->valutazione}/10</p>";
-        }
-    }
-
-    // Istanziazione di due oggetti Movie
-    $film1 = new Movie("Inception", "Christopher Nolan", 2010);
-    $film1->setValutazione(9);
-
-    $film2 = new Movie("La La Land", "Damien Chazelle", 2016);
-    $film2->setValutazione(8);
-
-    // Stampa delle informazioni dei film
-    $film1->stampaInfo();
-    echo "<hr>";
-    $film2->stampaInfo();
+    //Stampa delle informazioni dei film
+    // $film1->stampaInfo();
+    // echo "<hr>";
+    // $film2->stampaInfo();
     ?>
 </body>
 
